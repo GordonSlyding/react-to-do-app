@@ -54,3 +54,15 @@
 ## 6. Offene Fragen
 
 - wie sieht so ein service todolistmanager aus? ich kenne es aus java, das man eine klasse erstellt und über eine instanz dieser managaer klasse alles verwaltet, ich weiß nur nicht, ob man es so auch in react macht bzw wie es in funktionaler programmierung tut bzw. was genau der moderne best practice ist
+
+=> In React (funktionale Programmierung) sieht ein Service-Manager anders aus als in Java (OOP). Hier ist der moderne Best Practice:
+Variante 1: Custom Hook + Context (Empfohlen)
+Statt einer Manager-Klasse erstellen wir einen Custom Hook und verbinden ihn mit dem Context:
+
+# Ablauf
+
+1. Datenstruktur definieren
+2. Custom Hook implentieren
+3. Context erstellen
+4. UI Komponenten erstellen
+5. App zusammensetzen
