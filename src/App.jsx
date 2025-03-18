@@ -25,12 +25,16 @@ const App = () => {
   };
 
   const addToDo = (title) => {
+    const date = new Date();
+
+    const currentTimeDate = date.toLocaleString();
+
     const newId = Math.max(...toDos.map((toDo) => toDo.id)) + 1;
     const newToDo = {
       id: newId,
       title: title,
       isDone: false,
-      createdAt: new Date().getDate().toString(),
+      createdAt: currentTimeDate,
     };
 
     // Ersetze altes arrays durch ein neues aktualisiertes
@@ -60,7 +64,7 @@ const App = () => {
           ></Button>
         </div>
 
-        <div>{showForm && <ToDoForm />}</div>
+        <div>{showForm && <ToDoForm onSubmit={addToDo} />}</div>
 
         <div>
           {toDos.map((toDo) => (

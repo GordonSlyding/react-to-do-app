@@ -18,7 +18,7 @@ const ToDoItem = ({ id, title, isDone, createdAt, toggleStatus }) => {
         <span className="font-mono leading-0.5">{title}</span> <br />
         <span className="text-gray-400 italic text-sm">{createdAt}</span>
       </div>
-      <div className="flex flex-row gap-3.5 text-black ml-auto ">
+      <div className="flex flex-row gap-3.5text-black ml-auto ">
         <div className="bg-gray-300 rounded-md hover:bg-red-400 hover:cursor-pointer text-2xl p-3 group">
           <RiDeleteBin6Fill className="group-hover:text-amber-50" />
         </div>
