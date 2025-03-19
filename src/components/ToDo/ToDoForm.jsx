@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import { FaCheck } from "react-icons/fa";
 
 const ToDoForm = ({ onSubmit }) => {
-  // TODO: Nachschlagen was UseRef-Hook tut
   const inputRef = useRef(null);
 
   const handleSubmit = () => {

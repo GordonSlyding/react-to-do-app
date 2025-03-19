@@ -24,7 +24,7 @@ const App = () => {
     );
   };
 
-  const addToDo = (title) => {
+  const handleAddToDo = (title) => {
     const date = new Date();
 
     const currentTimeDate = date.toLocaleString();
@@ -39,6 +39,24 @@ const App = () => {
 
     // Ersetze altes arrays durch ein neues aktualisiertes
     setToDos([...toDos, newToDo]);
+  };
+
+  const handleDelete = (id) => {
+    setToDos((oldToDos) => oldToDos.filter((todo) => todo.id !== id));
+  };
+
+  const handleUpdate = (id, newTitle) => {
+    const selectedToDoIndex = toDos.findIndex((toDo) => toDo.id == id);
+    const newToDo = {
+      ...toDos[selectedToDoIndex],
+      title: newTitle,
+    };
+
+    setToDos((oldToDos) =>
+      oldToDos.map((oldToDo, index) =>
+        index == selectedToDoIndex ? newToDo : oldToDo
+      )
+    );
   };
 
   useEffect(() => {
@@ -64,7 +82,7 @@ const App = () => {
           ></Button>
         </div>
 
-        <div>{showForm && <ToDoForm onSubmit={addToDo} />}</div>
+        <div>{showForm && <ToDoForm onSubmit={handleAddToDo} />}</div>
 
         <div>
           {toDos.map((toDo) => (
@@ -75,6 +93,8 @@ const App = () => {
               isDone={toDo.isDone}
               createdAt={toDo.createdAt}
               toggleStatus={toggleStatus}
+              onDelete={handleDelete}
+              onUpdate={handleUpdate}
             ></ToDoItem>
           ))}
         </div>
