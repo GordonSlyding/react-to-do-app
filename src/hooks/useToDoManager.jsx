@@ -1,22 +1,29 @@
 import { useEffect, useState } from "react";
 
 const useToDoManager = () => {
-  const [toDos, setToDos] = useState([
-    { id: 1, title: "React lernen", isDone: false, createdAt: "23.10.29" },
-    { id: 2, title: "Angular lernen", isDone: true, createdAt: "13.10.29" },
-    { id: 3, title: "Vue lernen", isDone: false, createdAt: "23.10.29" },
-  ]);
-  // Speichere hier Daten im Browser
-  useEffect(() => {
-    const data = localStorage.getItem("myToDos");
-    if (data) {
-      setToDos(JSON.parse(data));
-    }
-  }, []);
+  // Initialisiere state direkt mit Daten aus localStorage oder Standardwerten
+  const [toDos, setToDos] = useState(() => {
+    console.log("Lazy Initialization: Versuche Daten zu laden");
+    const storedData = localStorage.getItem("myToDos");
 
+    if (storedData) {
+      console.log("Gefundene Daten:", storedData);
+      return JSON.parse(storedData);
+    }
+
+    // Standardwerte als Fallback
+    console.log("Verwende Standardwerte");
+    return [
+      { id: 1, title: "React lernen", isDone: false, createdAt: "23.10.29" },
+      { id: 2, title: "Angular lernen", isDone: true, createdAt: "13.10.29" },
+      { id: 3, title: "Vue lernen", isDone: false, createdAt: "23.10.29" },
+    ];
+  });
+
+  // Speichere bei Änderungen an toDos
   useEffect(() => {
     localStorage.setItem("myToDos", JSON.stringify(toDos));
-  });
+  }, [toDos]);
 
   const toggleStatus = (id) => {
     // Änderungen am Array-State müssen über den zugehörigen Setter vorgenommen werden.
