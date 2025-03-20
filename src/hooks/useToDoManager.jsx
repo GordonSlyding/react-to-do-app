@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const useToDoManager = () => {
   const [toDos, setToDos] = useState([
@@ -7,10 +6,21 @@ const useToDoManager = () => {
     { id: 2, title: "Angular lernen", isDone: true, createdAt: "13.10.29" },
     { id: 3, title: "Vue lernen", isDone: false, createdAt: "23.10.29" },
   ]);
+  // Speichere hier Daten im Browser
+  useEffect(() => {
+    const data = localStorage.getItem("myToDos");
+    if (data) {
+      setToDos(JSON.parse(data));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("myToDos", JSON.stringify(toDos));
+  });
 
   const toggleStatus = (id) => {
-    // Um Änderung am Array State zu machen, muss man das über den Setter machen und diese erwartet eine neue Version des Arrays um Immutibilität zu bewahren
-
+    // Änderungen am Array-State müssen über den zugehörigen Setter vorgenommen werden.
+    // Dieser erwartet eine neue Version des Arrays, um die Immutabilität zu gewährleisten.
     setToDos((oldToDos) =>
       oldToDos.map((toDo) => {
         return toDo.id === id ? { ...toDo, isDone: !toDo.isDone } : toDo;
@@ -18,7 +28,7 @@ const useToDoManager = () => {
     );
   };
 
-  const handleAddToDo = (title) => {
+  const handleAdd = (title) => {
     const date = new Date();
 
     const currentTimeDate = date.toLocaleString();
@@ -53,7 +63,13 @@ const useToDoManager = () => {
     );
   };
 
-  return { toDos, toggleStatus, handleAddToDo, handleDelete, handleUpdate };
+  return {
+    toDos,
+    toggleStatus,
+    handleAdd,
+    handleDelete,
+    handleUpdate,
+  };
 };
 
 export default useToDoManager;
