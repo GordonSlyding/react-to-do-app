@@ -49,8 +49,8 @@ import { useContext } from "react";
 const ToDoContext = createContext({
   toDos: [],
   toggleStatus: () => {},
-  handleAddToDo: () => {},
-  handleDeleteToDo: () => {},
+  handleAdd: () => {},
+  handleDelete: () => {},
   handleUpdate: () => {},
 });
 

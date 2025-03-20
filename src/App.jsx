@@ -4,6 +4,7 @@ import ToDoItem from "./components/ToDo/ToDoItem";
 import Button from "./components/Layout/Button";
 import ToDoForm from "./components/ToDo/ToDoForm";
 import { ToDoProvider } from "./context/ToDoContext";
+import ToDoList from "./components/ToDo/ToDoList";
 
 const App = () => {
   const [showForm, setShowForm] = useState(false);
@@ -14,31 +15,16 @@ const App = () => {
         <Header />
 
         <div>
-          <div className="mr-auto mb-4">
-            <Button
-              name={showForm ? "Cancel" : "Add ToDo"}
-              onClick={() => {
-                setShowForm(!showForm);
-              }}
-            ></Button>
-          </div>
+          <Button
+            name={showForm ? "Cancel" : "Add Task"}
+            onClick={() => {
+              setShowForm(!showForm);
+            }}
+          />
 
-          <div>{showForm && <ToDoForm />}</div>
+          {showForm && <ToDoForm />}
 
-          <div>
-            {toDos.map((toDo) => (
-              <ToDoItem
-                key={toDo.id}
-                id={toDo.id}
-                title={toDo.title}
-                isDone={toDo.isDone}
-                createdAt={toDo.createdAt}
-                toggleStatus={toggleStatus}
-                onDelete={handleDelete}
-                onUpdate={handleUpdate}
-              ></ToDoItem>
-            ))}
-          </div>
+          <ToDoList />
         </div>
       </div>
     </ToDoProvider>

@@ -11,6 +11,7 @@ const ToDoEdit = ({ onSubmit, onCancel, titleRefeference }) => {
     if (toDoTitle.trim()) {
       onSubmit(toDoTitle);
       inputRef.current.value = "";
+      onCancel();
     }
   };
 

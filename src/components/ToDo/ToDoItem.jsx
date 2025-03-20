@@ -1,30 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { FaPen } from "react-icons/fa";
 import ToDoEdit from "./ToDoEdit";
-import ToDoContext from "../../context/ToDoContext";
+import { useToDoContext } from "../../context/ToDoContext";
 
-const ToDoItem = ({
-  id,
-  title,
-  isDone,
-  createdAt,
-  toggleStatus,
-  onDelete,
-  onUpdate,
-}) => {
+const ToDoItem = ({ id, title, isDone, createdAt }) => {
+  // States
   const [toggleEdit, setEdit] = useState(false);
-  const toDos = useContext(ToDoContext);
-  console.log("alle todos aus context:", toDos);
+  const { toggleStatus, handleDelete, handleUpdate } = useToDoContext();
 
   return (
-    <div className="flex flex-row p-3 bg-white rounded-md w-3xl mb-1.5">
+    <div className="flex flex-row p-3 bg-white rounded-md w-3xl border-1 border-zinc-200 shadow-md">
       {toggleEdit ? (
         <>
           <ToDoEdit
             onSubmit={(newTitle) => {
-              onUpdate(id, newTitle);
-              setEdit(false);
+              handleUpdate(id, newTitle);
             }}
             onCancel={() => {
               setEdit(false);
@@ -63,7 +54,7 @@ const ToDoItem = ({
             <div
               className="bg-gray-300 rounded-md hover:bg-red-400 hover:cursor-pointer text-2xl p-3 group"
               onClick={() => {
-                onDelete(id);
+                handleDelete(id);
               }}
             >
               <RiDeleteBin6Fill className="group-hover:text-amber-50" />

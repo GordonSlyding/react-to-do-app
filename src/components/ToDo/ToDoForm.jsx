@@ -4,13 +4,13 @@ import { useToDoContext } from "../../context/ToDoContext";
 
 const ToDoForm = () => {
   const inputRef = useRef(null);
-  const { handleAddToDo } = useToDoContext();
+  const { handleAdd } = useToDoContext();
 
   const handleSubmit = () => {
     const toDoTitle = inputRef.current.value;
 
     if (toDoTitle.trim()) {
-      handleAddToDo(toDoTitle);
+      handleAdd(toDoTitle);
       inputRef.current.value = "";
     }
   };
@@ -23,7 +23,7 @@ const ToDoForm = () => {
   };
 
   return (
-    <div className="flex flex-row p-3 bg-white rounded-md w-3xl mb-1.5">
+    <div className="flex flex-row p-3 bg-white rounded-md w-full mb-9 border-zinc-100 border-1 shadow-md">
       <input
         type="text"
         placeholder="Enter here"

@@ -10,9 +10,9 @@ const Button = ({ name, onClick }) => {
 
   return (
     <button
-      className={` text-amber-50 rounded-md p-2.5 hover:cursor-pointer hover:brightness-95 font-bold hover:shadow-md ${
+      className={`${
         turnRed ? "bg-red-400" : "bg-blue-400"
-      }`}
+      } text-amber-50 p-2.5 hover:cursor-pointer hover:brightness-95 font-bold mb-4 rounded-3xl hover:shadow-md hover:rounded-md transition-all duration-200 ease-linear`}
       onClick={handleClick}
     >
       {name}
