@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import { FaPen } from "react-icons/fa";
 import ToDoEdit from "./ToDoEdit";
+import ToDoContext from "../../context/ToDoContext";
 
 const ToDoItem = ({
   id,
@@ -13,6 +14,8 @@ const ToDoItem = ({
   onUpdate,
 }) => {
   const [toggleEdit, setEdit] = useState(false);
+  const toDos = useContext(ToDoContext);
+  console.log("alle todos aus context:", toDos);
 
   return (
     <div className="flex flex-row p-3 bg-white rounded-md w-3xl mb-1.5">
