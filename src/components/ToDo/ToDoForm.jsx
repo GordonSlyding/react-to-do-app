@@ -1,14 +1,16 @@
 import React, { useRef } from "react";
 import { FaCheck } from "react-icons/fa";
+import { useToDoContext } from "../../context/ToDoContext";
 
-const ToDoForm = ({ onSubmit }) => {
+const ToDoForm = () => {
   const inputRef = useRef(null);
+  const { handleAddToDo } = useToDoContext();
 
   const handleSubmit = () => {
     const toDoTitle = inputRef.current.value;
 
     if (toDoTitle.trim()) {
-      onSubmit(toDoTitle);
+      handleAddToDo(toDoTitle);
       inputRef.current.value = "";
     }
   };

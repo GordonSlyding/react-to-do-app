@@ -23,7 +23,7 @@ const App = () => {
             ></Button>
           </div>
 
-          <div>{showForm && <ToDoForm onSubmit={handleAddToDo} />}</div>
+          <div>{showForm && <ToDoForm />}</div>
 
           <div>
             {toDos.map((toDo) => (
